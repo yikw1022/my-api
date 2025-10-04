@@ -1,0 +1,24 @@
+{
+  "groups": [
+    {
+      "name": "open.api",
+      "type": "com.openapi.OpenApiClientConfig",
+      "sourceType": "com.openapi.OpenApiClientConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "open.api.access-key",
+      "type": "java.lang.String",
+      "description": "key",
+      "sourceType": "com.openapi.OpenApiClientConfig"
+    },
+    {
+      "name": "open.api.secret-key",
+      "type": "java.lang.String",
+      "description": "密钥",
+      "sourceType": "com.openapi.OpenApiClientConfig"
+    }
+  ],
+  "hints": []
+}

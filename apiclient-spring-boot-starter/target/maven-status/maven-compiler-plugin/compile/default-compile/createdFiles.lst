@@ -1,0 +1,5 @@
+com\openapi\utils\SignUtil.class
+com\openapi\client\OpenClient.class
+com\openapi\utils\EncodeUtil.class
+META-INF\spring-configuration-metadata.json
+com\openapi\OpenApiClientConfig.class
