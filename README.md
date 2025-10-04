@@ -12,8 +12,8 @@
 
 ### 1. 注册与密钥获取
 
-1.  访问 [**注册页面**](https://api.xxx.com/signup) 注册成为开发者。
-2.  登录后，进入 **[控制台](https://api.xxx.com/console)** 的 **“密钥管理”** 页面。
+1.  访问 **注册页面** 注册成为开发者。
+2.  登录后，进入 **控制台** 的 **“密钥管理”** 页面。
 3.  生成您的 **`App ID`** 和 **`App Secret`**。
     * **`App ID`**: 平台的唯一应用标识。
     * **`App Secret`**: 用于接口调用的签名密钥，请妥善保管。
@@ -30,7 +30,7 @@
 
 ## 🔑 认证与安全
 
-我们采用 ** HMAC-SHA256 签名机制** 来确保请求的安全性和不可篡改性。
+我们采用 **HMAC-SHA256 签名机制** 来确保请求的安全性和不可篡改性。
 
 ### 签名步骤
 
@@ -44,11 +44,13 @@
     * `X-API-SIGNATURE`: 计算出的 **`Signature`**
 
 ### 示例 Header
+
 GET /api/v1/data/query?user_id=123&type=finance
 Host: https://www.google.com/search?q=api.xxx.com
 X-API-KEY: YOUR_APP_ID_HERE
 X-API-TIMESTAMP: 1678886400
 X-API-SIGNATURE: 01a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0...
+
 
 ---
 
@@ -56,11 +58,11 @@ X-API-SIGNATURE: 01a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0...
 
 ### 核心文档
 
-| 文档链接 | 描述 |
+| 文档名称 | 描述 |
 | :--- | :--- |
-| **[API 接口大全](https://docs.xxx.com/all-apis)** | 包含所有接口的请求路径、参数、返回格式及错误码。 |
-| **[错误码对照表](https://docs.xxx.com/error-codes)** | 详细解释所有可能出现的 HTTP 状态码和业务错误码。 |
-| **[最佳实践指南](https://docs.xxx.com/best-practices)** | 性能优化、高并发处理和安全建议。 |
+| **API 接口大全** | 包含所有接口的请求路径、参数、返回格式及错误码。 |
+| **错误码对照表** | 详细解释所有可能出现的 HTTP 状态码和业务错误码。 |
+| **最佳实践指南** | 性能优化、高并发处理和安全建议。 |
 
 ### 官方 SDKs
 
@@ -68,9 +70,9 @@ X-API-SIGNATURE: 01a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0...
 
 | 语言 | SDK 名称 | 下载/仓库 |
 | :--- | :--- | :--- |
-| **Python** | `xxx-api-py` | `pip install xxx-api-py` / [GitHub Link](https://github.com/xxx/xxx-api-py) |
-| **Java** | `xxx-api-java` | Maven/Gradle / [GitHub Link](https://github.com/xxx/xxx-api-java) |
-| **Go** | `go-xxx-api` | `go get github.com/xxx/go-xxx-api` / [GitHub Link](https://github.com/xxx/go-xxx-api) |
+| **Python** | `xxx-api-py` | `pip install xxx-api-py` / GitHub 仓库搜索：xxx/xxx-api-py |
+| **Java** | `xxx-api-java` | Maven/Gradle 搜索：xxx-api-java / GitHub 仓库搜索：xxx/xxx-api-java |
+| **Go** | `go-xxx-api` | `go get github.com/xxx/go-xxx-api` / GitHub 仓库搜索：xxx/go-xxx-api |
 
 ---
 
@@ -78,7 +80,7 @@ X-API-SIGNATURE: 01a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0...
 
 ### 服务状态监控
 
-您可以随时访问 [**服务状态页面**](https://status.xxx.com) 实时查看平台各个服务的运行状态、可用性和延迟情况。
+您可以随时访问 **服务状态页面** 实时查看平台各个服务的运行状态、可用性和延迟情况。
 
 ### 接口限流
 
@@ -90,7 +92,7 @@ X-API-SIGNATURE: 01a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0...
 | 标准商业接口 | 20 QPS |
 | 高级定制接口 | 50 QPS+ |
 
-如需提升限额，请通过 **[工单系统](https://api.xxx.com/support)** 提交申请。
+如需提升限额，请通过 **工单系统** 提交申请。
 
 ---
 
@@ -98,15 +100,13 @@ X-API-SIGNATURE: 01a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0...
 
 遇到任何问题，我们随时为您服务！
 
-* **技术支持工单**: [https://api.xxx.com/support](https://api.xxx.com/support) (推荐)
-* **邮箱**: `dev-support@xxx.com`
-* **开发者社区/论坛**: [https://community.xxx.com](https://community.xxx.com)
-* **企业合作**: `business@xxx.com`
-
+* **技术支持工单**: 访问 **工单系统** 页面 (推荐)
+* **邮箱**: `2189379735@.com`
+* **开发者社区/论坛**: 访问 **社区论坛** 页面
 ---
 
 ## ©️ 许可协议
 
-本平台的所有 API 接口、文档和 SDKs 均受 **[XXX 开放平台服务协议](https://api.xxx.com/agreement)** 保护。请在使用前仔细阅读。
+本平台的所有 API 接口、文档和 SDKs 均受 **XXX 开放平台服务协议** 保护。请在使用前仔细阅读。
 
 **Copyright © 2025 XXX Technology Inc. All rights reserved.**
