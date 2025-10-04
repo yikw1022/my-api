@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="open.api.mapper.InterfaceInfoMapper">
+
+    <select id="queryTopTenUser" resultType="java.util.Map">
+        SELECT
+            COUNT(*) AS total,
+            user_id
+        FROM
+            user_interface_info
+        WHERE
+            DATE(create_time) = CURDATE()
+        GROUP BY
+            user_id
+        ORDER BY
+            total DESC
+            LIMIT 10;
+    </select>
+
+</mapper>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="open.api.mapper.UserInterfaceInfoMapper">
+
+    <select id="getInvokeCountByKeyNameAndDate" resultType="java.lang.Long">
+        WITH RECURSIVE DateSeries AS (
+            SELECT CURDATE() AS day
+        UNION ALL
+        SELECT DATE_SUB(day, INTERVAL 1 DAY)
+        FROM DateSeries
+        WHERE day > DATE_SUB(CURDATE(), INTERVAL 6 DAY)
+            )
+        SELECT
+            COUNT(uii.id) AS count
+        FROM
+            DateSeries ds
+            LEFT JOIN user_interface_info uii ON ds.day = DATE(uii.create_time) AND uii.key_name = #{keyName}
+        GROUP BY
+            ds.day
+        ORDER BY
+            ds.day ASC;
+    </select>
+
+    <select id="getInvokeDateByKeyName" resultType="java.lang.String">
+        WITH RECURSIVE DateSeries AS (
+            SELECT CURDATE() AS day
+        UNION ALL
+        SELECT DATE_SUB(day, INTERVAL 1 DAY)
+        FROM DateSeries
+        WHERE day > DATE_SUB(CURDATE(), INTERVAL 6 DAY)
+            )
+        SELECT
+            ds.day
+        FROM
+            DateSeries ds
+            LEFT JOIN user_interface_info uii ON ds.day = DATE(uii.create_time) AND uii.key_name = 'swx'
+        GROUP BY
+            ds.day
+        ORDER BY
+            ds.day ASC;
+    </select>
+
+    <select id="findOneDayCountList" resultType="java.lang.Long">
+        SELECT
+            COUNT(uii.id) AS count
+        FROM (
+            SELECT 0 AS num
+            UNION ALL SELECT 1
+            UNION ALL SELECT 2
+            UNION ALL SELECT 3
+            UNION ALL SELECT 4
+            UNION ALL SELECT 5
+            UNION ALL SELECT 6
+            UNION ALL SELECT 7
+            UNION ALL SELECT 8
+            UNION ALL SELECT 9
+            UNION ALL SELECT 10
+            UNION ALL SELECT 11
+            UNION ALL SELECT 12
+            UNION ALL SELECT 13
+            UNION ALL SELECT 14
+            UNION ALL SELECT 15
+            UNION ALL SELECT 16
+            UNION ALL SELECT 17
+            UNION ALL SELECT 18
+            UNION ALL SELECT 19
+            UNION ALL SELECT 20
+            UNION ALL SELECT 21
+            UNION ALL SELECT 22
+            UNION ALL SELECT 23
+            ) n
+            LEFT JOIN user_interface_info uii ON
+            HOUR(uii.create_time) = n.num AND
+            DATE(uii.create_time) = CURDATE() AND
+            uii.key_name = #{keyName}
+        GROUP BY
+            n.num
+        ORDER BY
+            n.num;
+    </select>
+
+    <select id="findOneDayTimeList" resultType="java.lang.String">
+        SELECT
+            TIME(CURDATE() + INTERVAL n.num HOUR) AS hour_only
+        FROM (
+            SELECT 0 AS num
+            UNION ALL SELECT 1
+            UNION ALL SELECT 2
+            UNION ALL SELECT 3
+            UNION ALL SELECT 4
+            UNION ALL SELECT 5
+            UNION ALL SELECT 6
+            UNION ALL SELECT 7
+            UNION ALL SELECT 8
+            UNION ALL SELECT 9
+            UNION ALL SELECT 10
+            UNION ALL SELECT 11
+            UNION ALL SELECT 12
+            UNION ALL SELECT 13
+            UNION ALL SELECT 14
+            UNION ALL SELECT 15
+            UNION ALL SELECT 16
+            UNION ALL SELECT 17
+            UNION ALL SELECT 18
+            UNION ALL SELECT 19
+            UNION ALL SELECT 20
+            UNION ALL SELECT 21
+            UNION ALL SELECT 22
+            UNION ALL SELECT 23
+            ) n
+            LEFT JOIN user_interface_info uii ON
+            HOUR(uii.create_time) = n.num AND
+            DATE(uii.create_time) = CURDATE() AND
+            uii.key_name = #{keyName}
+        GROUP BY
+            n.num
+        ORDER BY
+            n.num;
+    </select>
+
+    <select id="findThirtyDayCountList" resultType="java.lang.Long">
+        WITH RECURSIVE DateSeries AS (
+            SELECT CURDATE() - INTERVAL 30 DAY AS date_only
+        UNION ALL
+        SELECT date_only + INTERVAL 1 DAY
+        FROM DateSeries
+        WHERE date_only &lt; CURDATE()
+            )
+        SELECT
+            COUNT(uii.id) AS count
+        FROM
+            DateSeries ds
+                LEFT JOIN
+            user_interface_info uii ON ds.date_only = DATE(uii.create_time) AND uii.key_name = #{keyName}
+        GROUP BY
+            ds.date_only
+        ORDER BY
+            ds.date_only
+    </select>
+
+    <select id="findThirtyDayTimeList" resultType="java.lang.String">
+        WITH RECURSIVE DateSeries AS (
+            SELECT CURDATE() - INTERVAL 30 DAY AS date_only
+        UNION ALL
+        SELECT date_only + INTERVAL 1 DAY
+        FROM DateSeries
+        WHERE date_only &lt; CURDATE()
+            )
+        SELECT
+            ds.date_only
+        FROM
+            DateSeries ds
+                LEFT JOIN
+            user_interface_info uii ON ds.date_only = DATE(uii.create_time) AND uii.key_name = #{keyName}
+        GROUP BY
+            ds.date_only
+        ORDER BY
+            ds.date_only
+    </select>
+
+    <select id="findSixMonthCountList" resultType="java.lang.Long">
+        WITH RECURSIVE MonthSeries AS (
+        SELECT DATE_FORMAT(CURDATE() - INTERVAL 5 MONTH, '%Y-%m-01') AS month_start,
+        LAST_DAY(CURDATE() - INTERVAL 5 MONTH) AS month_end
+        UNION ALL
+        SELECT DATE_ADD(month_start, INTERVAL 1 MONTH),
+        LAST_DAY(DATE_ADD(month_start, INTERVAL 1 MONTH))
+        FROM MonthSeries
+        WHERE DATE_ADD(month_start, INTERVAL 1 MONTH) &lt;= CURDATE()
+        )
+        SELECT
+        COUNT(uii.id) AS count
+        FROM
+        MonthSeries ms
+        LEFT JOIN
+        user_interface_info uii ON DATE(uii.create_time) BETWEEN ms.month_start AND ms.month_end AND uii.key_name = #{keyName}
+        GROUP BY
+        DATE_FORMAT(ms.month_start, '%Y-%m');
+    </select>
+
+    <select id="findSixMonthTimeList" resultType="java.lang.String">
+        WITH RECURSIVE MonthSeries AS (
+        SELECT DATE_FORMAT(CURDATE() - INTERVAL 5 MONTH, '%Y-%m-01') AS month_start,
+        LAST_DAY(CURDATE() - INTERVAL 5 MONTH) AS month_end
+        UNION ALL
+        SELECT DATE_ADD(month_start, INTERVAL 1 MONTH),
+        LAST_DAY(DATE_ADD(month_start, INTERVAL 1 MONTH))
+        FROM MonthSeries
+        WHERE DATE_ADD(month_start, INTERVAL 1 MONTH) &lt;= CURDATE()
+        )
+        SELECT
+        DATE_FORMAT(ms.month_start, '%Y-%m') AS month_only
+        FROM
+        MonthSeries ms
+        LEFT JOIN
+        user_interface_info uii ON DATE(uii.create_time) BETWEEN ms.month_start AND ms.month_end AND uii.key_name = #{keyName}
+        GROUP BY
+        DATE_FORMAT(ms.month_start, '%Y-%m');
+    </select>
+</mapper>

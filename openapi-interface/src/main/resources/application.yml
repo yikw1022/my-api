@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: openapi-interface
+  profiles:
+    active: dev
+
