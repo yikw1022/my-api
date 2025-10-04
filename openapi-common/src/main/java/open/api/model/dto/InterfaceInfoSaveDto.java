@@ -1,0 +1,63 @@
+package open.api.model.dto;
+
+import com.baomidou.mybatisplus.annotation.*;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
+import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+/**
+ * <p>
+ * 接口信息表
+ * </p>
+ *
+ * @author author
+ * @since 2024-04-26
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
+public class InterfaceInfoSaveDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty(value = "接口创建者id")
+    private Integer userId;
+
+    @ApiModelProperty(value = "接口名称")
+    @NotBlank(message = "接口名称不能为空")
+    private String name;
+
+    @ApiModelProperty(value = "接口地址")
+    @NotBlank(message = "接口地址不能为空")
+    private String url;
+
+    @ApiModelProperty(value = "接口请求类型：如：post;get;put;delete")
+    @NotBlank(message = "请求类型不能为空")
+    private String method;
+
+    @ApiModelProperty(value = "请求参数")
+    private String params;
+
+    @ApiModelProperty(value = "接口额度设置")
+    private Long Line;
+
+    @ApiModelProperty(value = "接口描述")
+    @NotBlank(message = "接口描述不能为空")
+    private String description;
+
+    @ApiModelProperty(value = "请求头")
+    private String requestHeader;
+
+    @ApiModelProperty(value = "响应头")
+    private String responseHeader;
+}
