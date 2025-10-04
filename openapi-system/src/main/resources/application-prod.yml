@@ -1,0 +1,35 @@
+server:
+  port: 9003
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: 115.190.12.119:8848
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://115.190.9.34:3306/open-api?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 'swx020708'
+
+mybatis-plus:
+  type-enums-package: open.api.enums
+
+#knife4j
+knife4j:
+  # 开启增强配置
+  enable: true
+  basic:
+    enable: true
+    # Basic认证用户名
+    username: admin
+    # Basic认证密码
+    password: admin
