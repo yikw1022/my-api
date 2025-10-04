@@ -1,0 +1,23 @@
+// 引入清除默认样式
+@import "./reset.scss";
+
+//滚动条样式设置
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+    width: 6px;
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #535b83; // 滑块颜色
+    border-radius: 5px; // 滑块圆角
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #73767a; // 鼠标移入滑块变红
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px; // 轨道圆角
+    background-color: #eee // 轨道颜色 
+}
