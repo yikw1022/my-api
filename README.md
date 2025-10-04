@@ -1,4 +1,4 @@
-# 🚀 XXX API 开放平台 (XXX API Open Platform)
+# 🚀 小易API 开放平台 (xiaoyi API Open Platform)
 
 ## 🌟 平台简介
 
